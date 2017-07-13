@@ -7,7 +7,25 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "QRScannerView.h"
+#import "QRScannerHelper.h"
 
 @interface QRScannerViewController : UIViewController
+
+@property (nonatomic, strong, readonly) QRScannerView *scannerView;
+
+@property (nonatomic, strong, readonly) QRScannerStyle *style;
+
+/**
+ * 扫码结果
+ */
+@property (nonatomic, copy, readonly) NSString *scanResult;
+
+- (instancetype)initWithScannerStyle:(QRScannerStyle *)style;
+
+/**
+ * 处理扫描结果
+ */
+- (void)handleScanResult;
 
 @end

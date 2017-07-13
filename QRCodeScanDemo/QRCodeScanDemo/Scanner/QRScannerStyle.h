@@ -55,7 +55,19 @@
  */
 @property (nonatomic, assign) CGFloat angleLineLength;
 
+/**
+ * 扫码框的四个角是在扫描框内部还是外部，默认为贴着四个角在框线外部
+ */
+@property (nonatomic, assign) BOOL isAngleDisplayInner;
 
+/**
+ * 扫描线的图片
+ */
+@property (nonatomic, strong) UIImage *scanLineImage;
+
+/**
+ * 单例，得到默认的样式
+ */
 + (QRScannerStyle *)defaultStyle;
 
 @end

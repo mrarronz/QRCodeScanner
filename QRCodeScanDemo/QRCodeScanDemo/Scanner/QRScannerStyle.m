@@ -23,10 +23,11 @@
     self = [super init];
     if (self) {
         _isNeedShowRectangle = YES;
+        _isAngleDisplayInner = NO;
         _verticalOffset = 60;
         _marginOffset = 60;
         _rectangleBorderColor = [UIColor whiteColor];
-        _angleColor = [UIColor colorWithRed:0. green:167./255. blue:231./255. alpha:1.0];
+        _angleColor = [UIColor colorWithRed:0.1 green:0.8 blue:0.3 alpha:1.0];
         _noneRecognizeColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
         _angleLineWidth = 7;
         _angleLineLength = 24;

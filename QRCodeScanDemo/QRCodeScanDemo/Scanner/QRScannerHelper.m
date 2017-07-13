@@ -133,4 +133,67 @@
     return YES;
 }
 
+/**
+ * 获取扫码的识别区域
+ */
++ (CGRect)rectOfInterestInView:(UIView *)videoView scannerStyle:(QRScannerStyle *)style {
+    CGFloat rectangleLength = CGRectGetWidth(videoView.bounds) - style.marginOffset * 2;
+    CGFloat minY = CGRectGetHeight(videoView.bounds)/2 - rectangleLength/2 - style.verticalOffset;
+    CGFloat minX = style.marginOffset;
+    
+    // 扫码区域的坐标
+    CGRect cropRect = CGRectMake(minX, minY, rectangleLength, rectangleLength);
+    
+    // 获取识别区域
+    CGRect rectOfInterest;
+    CGSize size = videoView.bounds.size;
+    CGFloat p1 = size.height/size.width;
+    CGFloat p2 = 1920./1080.;  //使用了1080p的图像输出
+    if (p1 < p2) {
+        CGFloat fixHeight = size.width * 1920. / 1080.;
+        CGFloat fixPadding = (fixHeight - size.height)/2;
+        rectOfInterest = CGRectMake((cropRect.origin.y + fixPadding)/fixHeight,
+                                    cropRect.origin.x/size.width,
+                                    cropRect.size.height/fixHeight,
+                                    cropRect.size.width/size.width);
+        
+    } else {
+        CGFloat fixWidth = size.height * 1080. / 1920.;
+        CGFloat fixPadding = (fixWidth - size.width)/2;
+        rectOfInterest = CGRectMake(cropRect.origin.y/size.height,
+                                    (cropRect.origin.x + fixPadding)/fixWidth,
+                                    cropRect.size.height/size.height,
+                                    cropRect.size.width/fixWidth);
+    }
+    return rectOfInterest;
+}
+
+/**
+ * 获取扫码识别区域，按照屏幕横竖屏计算位置，当手机或iPad横屏扫码框居中显示时可使用
+ */
++ (CGRect)getInterestRectInView:(UIView *)videoView style:(QRScannerStyle *)style {
+    CGFloat rectangleLength = CGRectGetWidth(videoView.bounds) - style.marginOffset * 2;
+    CGFloat minY = CGRectGetHeight(videoView.bounds)/2 - rectangleLength/2 - style.verticalOffset;
+    CGFloat minX = style.marginOffset;
+    
+    // 扫码区域的坐标
+    CGRect cropRect = CGRectMake(minX, minY, rectangleLength, rectangleLength);
+    CGRect rectOfInterest;
+    // 计算横竖屏的情况下对应的识别区域
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    if (UIInterfaceOrientationIsPortrait(orientation)) {
+        rectOfInterest = CGRectMake(CGRectGetMinY(cropRect)/CGRectGetHeight(videoView.bounds),
+                                    CGRectGetMinX(cropRect)/CGRectGetWidth(videoView.bounds),
+                                    CGRectGetHeight(cropRect)/CGRectGetHeight(videoView.bounds),
+                                    CGRectGetWidth(cropRect)/CGRectGetWidth(videoView.bounds));
+        
+    } else {
+        rectOfInterest = CGRectMake(CGRectGetMinX(cropRect)/CGRectGetWidth(videoView.bounds),
+                                    CGRectGetMinY(cropRect)/CGRectGetHeight(videoView.bounds),
+                                    CGRectGetWidth(cropRect)/CGRectGetWidth(videoView.bounds),
+                                    CGRectGetHeight(cropRect)/CGRectGetHeight(videoView.bounds));
+    }
+    return rectOfInterest;
+}
+
 @end

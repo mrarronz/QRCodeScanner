@@ -13,4 +13,24 @@
 
 - (instancetype)initWithFrame:(CGRect)frame style:(QRScannerStyle *)style;
 
+/**
+ * 显示“准备中”的提示
+ */
+- (void)showLoadingView;
+
+/**
+ * 隐藏提示
+ */
+- (void)hideLoadingView;
+
+/**
+ * 开始显示线条动画
+ */
+- (void)startAnimating;
+
+/**
+ * 停止显示线条动画
+ */
+- (void)stopAnimating;
+
 @end
