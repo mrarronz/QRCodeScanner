@@ -9,7 +9,7 @@
 #import "QRScannerViewController.h"
 #import <AVFoundation/AVFoundation.h>
 
-@interface QRScannerViewController ()<AVCaptureMetadataOutputObjectsDelegate>
+@interface QRScannerViewController ()<AVCaptureMetadataOutputObjectsDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (nonatomic, strong) AVCaptureSession *session;
 @property (nonatomic, strong) AVCaptureVideoPreviewLayer *previewLayer;
@@ -115,6 +115,36 @@
     [_scannerView stopAnimating];
 }
 
+/**
+ * 开关闪光灯，闪光灯默认是关闭的
+ */
+- (void)switchFlashLight {
+    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    if (device.hasTorch) {
+        [device lockForConfiguration:nil];
+        if (device.torchMode != AVCaptureTorchModeOn) {
+            [device setTorchMode:AVCaptureTorchModeOn];
+        } else {
+            [device setTorchMode:AVCaptureTorchModeOff];
+        }
+        [device unlockForConfiguration];
+    }
+}
+
+/**
+ * 打开本地相册进行二维码图片的识别
+ */
+- (void)openPhotoLibrary {
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+        return;
+    }
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+    imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    imagePicker.delegate = self;
+    imagePicker.allowsEditing = YES;
+    [self presentViewController:imagePicker animated:YES completion:nil];
+}
+
 #pragma mark - AVCaptureMetadataOutputObjectsDelegate
 
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection {
@@ -125,7 +155,36 @@
         AVMetadataMachineReadableCodeObject * metadataObject = [metadataObjects objectAtIndex:0];
         self.scanResult = metadataObject.stringValue;
     }
+    [self stopScanning];
     [self handleScanResult];
+}
+
+- (void)handleScanResult {
+    
+}
+
+#pragma mark - UIImagePickerControllerDelegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+    
+    // 识别图片二维码
+    CIDetector *detector = [CIDetector detectorOfType:CIDetectorTypeQRCode
+                                              context:nil
+                                              options:@{ CIDetectorAccuracy : CIDetectorAccuracyHigh }];
+    
+    NSArray *features = [detector featuresInImage:[CIImage imageWithCGImage:image.CGImage]];
+    CIQRCodeFeature *feature = [features objectAtIndex:0];
+    
+    __weak typeof(self) weakSelf = self;
+    [picker dismissViewControllerAnimated:YES completion:^{
+        weakSelf.scanResult = feature.messageString;
+        [weakSelf handleScanResult];
+    }];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Init property

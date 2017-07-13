@@ -19,16 +19,6 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor blackColor];
-    
-//    QRScannerView *scanView = [[QRScannerView alloc] initWithFrame:self.view.bounds
-//                                                             style:[QRScannerStyle defaultStyle]];
-//    [self.view addSubview:scanView];
-//    
-//    [scanView showLoadingView];
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        [scanView hideLoadingView];
-//        [scanView startAnimating];
-//    });
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,8 +26,21 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+// 处理扫描结果
+- (void)handleScanResult {
+    if (!self.scanResult) {
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示"
+                                                                       message:@"无法识别二维码，请换个码重新扫描"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            [self startScanning];
+        }]];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     
 }
 
@@ -63,6 +66,7 @@
 - (UIButton *)flashLightButton {
     if (!_flashLightButton) {
         _flashLightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _flashLightButton.frame = CGRectMake(0, 0, 64, 64);
         [_flashLightButton setBackgroundImage:[UIImage imageNamed:@"icon_open_light"] forState:UIControlStateNormal];
     }
     return _flashLightButton;

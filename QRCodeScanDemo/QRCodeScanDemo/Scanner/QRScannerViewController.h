@@ -24,6 +24,26 @@
 - (instancetype)initWithScannerStyle:(QRScannerStyle *)style;
 
 /**
+ * 开始扫描，隐藏准备中的提示，显示扫描线动画
+ */
+- (void)startScanning;
+
+/**
+ * 停止扫描，停止扫描线移动的动画
+ */
+- (void)stopScanning;
+
+/**
+ * 开关闪光灯，闪光灯默认是关闭的
+ */
+- (void)switchFlashLight;
+
+/**
+ * 打开本地相册进行二维码图片的识别
+ */
+- (void)openPhotoLibrary;
+
+/**
  * 处理扫描结果
  */
 - (void)handleScanResult;

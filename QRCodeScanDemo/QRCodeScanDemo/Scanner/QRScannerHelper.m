@@ -66,6 +66,7 @@
         completion();
     }
     else if (status == AVAuthorizationStatusNotDetermined) {
+        // 主动获取相机权限
         [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
             if (granted) {
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -98,6 +99,7 @@
         completion(YES);
     }
     else if (authStatus == PHAuthorizationStatusNotDetermined) {
+        // 主动获取相册权限
         [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
             BOOL isAvailable = NO;
             if (status == PHAuthorizationStatusAuthorized) {
