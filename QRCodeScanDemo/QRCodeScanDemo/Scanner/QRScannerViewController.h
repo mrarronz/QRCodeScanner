@@ -24,6 +24,11 @@
 - (instancetype)initWithScannerStyle:(QRScannerStyle *)style;
 
 /**
+ * 获取扫描区域的范围
+ */
+- (CGRect)scanRect;
+
+/**
  * 开始扫描，隐藏准备中的提示，显示扫描线动画
  */
 - (void)startScanning;

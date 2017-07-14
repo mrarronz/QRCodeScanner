@@ -17,8 +17,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     self.view.backgroundColor = [UIColor blackColor];
+    
+    [self setupComponent];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,19 +31,46 @@
 // 处理扫描结果
 - (void)handleScanResult {
     if (!self.scanResult) {
-        
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示"
-                                                                       message:@"无法识别二维码，请换个码重新扫描"
-                                                                preferredStyle:UIAlertControllerStyleAlert];
-        [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            [self startScanning];
-        }]];
-        [self presentViewController:alert animated:YES completion:nil];
+        [self showAlert:@"无法识别二维码，请换个码重新扫描"];
+        return;
     }
+    [self showAlert:self.scanResult];
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+- (void)showAlert:(NSString *)message {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示"
+                                                                   message:message
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        [self startScanning];
+    }]];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)setupComponent {
+    [self.view addSubview:self.tipLabel];
+    [self.view addSubview:self.photoButton];
+    [self.view addSubview:self.flashLightButton];
     
+    CGFloat originY = CGRectGetMaxY([self scanRect]) + 50;
+    
+    self.tipLabel.frame = CGRectMake(0, 60, CGRectGetWidth(self.view.bounds), 20);
+    self.photoButton.frame = CGRectMake(CGRectGetWidth(self.view.bounds)/2 - 30 - 64, originY, 64, 64);
+    self.flashLightButton.frame = CGRectMake(CGRectGetWidth(self.view.bounds)/2 + 30, originY, 64, 64);
+}
+
+/**
+ * 选择图片
+ */
+- (void)selectPhotoButtonClicked:(id)sender {
+    [self openPhotoLibrary];
+}
+
+/**
+ * 切换闪光灯
+ */
+- (void)toggleFlashLight:(id)sender {
+    [self switchFlashLight];
 }
 
 #pragma mark - Init property
@@ -49,25 +78,17 @@
 - (UIButton *)photoButton {
     if (!_photoButton) {
         _photoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _photoButton.frame = CGRectMake(0, 0, 64, 64);
         [_photoButton setBackgroundImage:[UIImage imageNamed:@"icon_select_photo"] forState:UIControlStateNormal];
+        [_photoButton addTarget:self action:@selector(selectPhotoButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _photoButton;
-}
-
-- (UIButton *)cameraButton {
-    if (!_cameraButton) {
-        _cameraButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_cameraButton setBackgroundImage:[UIImage imageNamed:@"icon_switch_camera"] forState:UIControlStateNormal];
-    }
-    return _cameraButton;
 }
 
 - (UIButton *)flashLightButton {
     if (!_flashLightButton) {
         _flashLightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _flashLightButton.frame = CGRectMake(0, 0, 64, 64);
         [_flashLightButton setBackgroundImage:[UIImage imageNamed:@"icon_open_light"] forState:UIControlStateNormal];
+        [_flashLightButton addTarget:self action:@selector(toggleFlashLight:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _flashLightButton;
 }
@@ -78,6 +99,7 @@
         _tipLabel.font = [UIFont systemFontOfSize:17];
         _tipLabel.textColor = [UIColor whiteColor];
         _tipLabel.text = @"将方框对准二维码即可自动扫描";
+        _tipLabel.textAlignment = NSTextAlignmentCenter;
         [_tipLabel sizeToFit];
     }
     return _tipLabel;

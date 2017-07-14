@@ -145,6 +145,18 @@
     [self presentViewController:imagePicker animated:YES completion:nil];
 }
 
+/**
+ * 获取扫描区域的范围
+ */
+- (CGRect)scanRect {
+    // 扫码框的长宽
+    CGFloat rectangleLength = CGRectGetWidth(self.view.bounds) - _style.marginOffset * 2;
+    // 扫码区域y轴最小坐标
+    CGFloat minY = CGRectGetHeight(self.view.bounds)/2 - rectangleLength/2 - _style.verticalOffset;
+    CGRect rect = CGRectMake(_style.marginOffset, minY, rectangleLength, rectangleLength);
+    return rect;
+}
+
 #pragma mark - AVCaptureMetadataOutputObjectsDelegate
 
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection {
@@ -176,6 +188,7 @@
     NSArray *features = [detector featuresInImage:[CIImage imageWithCGImage:image.CGImage]];
     CIQRCodeFeature *feature = [features objectAtIndex:0];
     
+    [self stopScanning];
     __weak typeof(self) weakSelf = self;
     [picker dismissViewControllerAnimated:YES completion:^{
         weakSelf.scanResult = feature.messageString;
