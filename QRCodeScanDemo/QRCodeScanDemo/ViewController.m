@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "DemoViewController.h"
+#import "GenerateImageViewController.h"
 
 @interface ViewController ()
 
@@ -49,7 +50,10 @@
         }
             break;
         case 1:
-            
+        {
+            GenerateImageViewController *vc = [[GenerateImageViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
             break;
         default:
             break;
