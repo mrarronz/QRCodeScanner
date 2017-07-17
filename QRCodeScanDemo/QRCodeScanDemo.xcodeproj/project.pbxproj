@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E23356F91F1CB78800C13797 /* CustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E23356F81F1CB78800C13797 /* CustomButton.m */; };
 		E2A81DF21F18BD820097ACF9 /* UIImage+QRScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A81DF11F18BD820097ACF9 /* UIImage+QRScanner.m */; };
 		E2A81DF51F18C0970097ACF9 /* MobikeScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A81DF41F18C0970097ACF9 /* MobikeScanViewController.m */; };
 		E2A81DF81F18C0EC0097ACF9 /* OfobikeScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A81DF71F18C0EC0097ACF9 /* OfobikeScanViewController.m */; };
@@ -44,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E23356F71F1CB78800C13797 /* CustomButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomButton.h; path = Custom/CustomButton.h; sourceTree = "<group>"; };
+		E23356F81F1CB78800C13797 /* CustomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomButton.m; path = Custom/CustomButton.m; sourceTree = "<group>"; };
 		E2A81DF01F18BD820097ACF9 /* UIImage+QRScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+QRScanner.h"; path = "Scanner/UIImage+QRScanner.h"; sourceTree = "<group>"; };
 		E2A81DF11F18BD820097ACF9 /* UIImage+QRScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+QRScanner.m"; path = "Scanner/UIImage+QRScanner.m"; sourceTree = "<group>"; };
 		E2A81DF31F18C0970097ACF9 /* MobikeScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobikeScanViewController.h; sourceTree = "<group>"; };
@@ -105,6 +108,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E23356F31F1CB73400C13797 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				E23356F71F1CB78800C13797 /* CustomButton.h */,
+				E23356F81F1CB78800C13797 /* CustomButton.m */,
+			);
+			name = Custom;
+			sourceTree = "<group>";
+		};
 		E2E78B8E1F14C5F500D04B50 = {
 			isa = PBXGroup;
 			children = (
@@ -128,6 +140,7 @@
 		E2E78B991F14C5F500D04B50 /* QRCodeScanDemo */ = {
 			isa = PBXGroup;
 			children = (
+				E23356F31F1CB73400C13797 /* Custom */,
 				E2E78BCD1F14C6F400D04B50 /* Scanner */,
 				E2E78B9D1F14C5F500D04B50 /* AppDelegate.h */,
 				E2E78B9E1F14C5F500D04B50 /* AppDelegate.m */,
@@ -338,6 +351,7 @@
 				E2A81DF81F18C0EC0097ACF9 /* OfobikeScanViewController.m in Sources */,
 				E2A81DF21F18BD820097ACF9 /* UIImage+QRScanner.m in Sources */,
 				E2E78B9C1F14C5F500D04B50 /* main.m in Sources */,
+				E23356F91F1CB78800C13797 /* CustomButton.m in Sources */,
 				E2A81DFB1F1C56140097ACF9 /* GenerateImageViewController.m in Sources */,
 				E2E78BD91F15FCE000D04B50 /* DemoViewController.m in Sources */,
 				E2E78BD31F14C73000D04B50 /* QRScannerStyle.m in Sources */,

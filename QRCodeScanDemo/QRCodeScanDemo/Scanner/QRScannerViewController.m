@@ -34,9 +34,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     if (!_style) {
-        _style = [QRScannerStyle defaultStyle];
+        _style = [self customStyle];
     }
     [self setupCamera];
+    self.view.backgroundColor = [UIColor blackColor];
     [self.view addSubview:self.scannerView];
     [self.scannerView showLoadingView];
 }
@@ -143,6 +144,13 @@
     imagePicker.delegate = self;
     imagePicker.allowsEditing = YES;
     [self presentViewController:imagePicker animated:YES completion:nil];
+}
+
+/**
+ * 定制扫码框的样式，子类重写这个方法
+ */
+- (QRScannerStyle *)customStyle {
+    return [QRScannerStyle defaultStyle];
 }
 
 /**

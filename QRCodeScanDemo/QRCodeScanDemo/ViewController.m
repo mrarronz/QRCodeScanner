@@ -9,6 +9,8 @@
 #import "ViewController.h"
 #import "DemoViewController.h"
 #import "GenerateImageViewController.h"
+#import "MobikeScanViewController.h"
+#import "OfobikeScanViewController.h"
 
 @interface ViewController ()
 
@@ -20,7 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.items = @[@"扫描二维码", @"生成二维码"];
+    self.items = @[@"扫描二维码", @"生成二维码", @"简单模仿摩拜扫码", @"简单模仿ofo扫码"];
 }
 
 
@@ -53,6 +55,18 @@
         {
             GenerateImageViewController *vc = [[GenerateImageViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 2:
+        {
+            MobikeScanViewController *vc = [[MobikeScanViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 3:
+        {
+            OfobikeScanViewController *vc = [[OfobikeScanViewController alloc] init];
+            [self presentViewController:vc animated:YES completion:nil];
         }
             break;
         default:

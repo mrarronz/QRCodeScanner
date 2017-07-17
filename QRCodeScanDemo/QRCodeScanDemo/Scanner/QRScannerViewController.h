@@ -24,6 +24,11 @@
 - (instancetype)initWithScannerStyle:(QRScannerStyle *)style;
 
 /**
+ * 定制扫码框的样式，子类重写这个方法
+ */
+- (QRScannerStyle *)customStyle;
+
+/**
  * 获取扫描区域的范围
  */
 - (CGRect)scanRect;

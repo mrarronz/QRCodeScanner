@@ -174,6 +174,7 @@
     if (_scannerStyle.scanLineImage) {
         self.scanLineView.image = _scannerStyle.scanLineImage;
         self.scanLineView.backgroundColor = [UIColor clearColor];
+        self.scanLineView.contentMode = UIViewContentModeScaleAspectFill;
     } else {
         self.scanLineView.image = nil;
         self.scanLineView.backgroundColor = _scannerStyle.angleColor;
