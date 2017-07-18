@@ -10,7 +10,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   QRCodeScanner:
-    :commit: 53c2b56030e6c12e0a4171583d0ab6e5af98bd61
+    :commit: 4924fae3364693aca09d35425841d2f74863a160
     :git: https://github.com/mrarronz/QRCodeScanner.git
 
 SPEC CHECKSUMS:
