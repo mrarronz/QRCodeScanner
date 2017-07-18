@@ -29,6 +29,11 @@
 - (QRScannerStyle *)customStyle;
 
 /**
+ * 设置扫码识别区域，子类可以重写这个方法重新设置
+ */
+- (CGRect)rectOfInterest;
+
+/**
  * 获取扫描区域的范围
  */
 - (CGRect)scanRect;

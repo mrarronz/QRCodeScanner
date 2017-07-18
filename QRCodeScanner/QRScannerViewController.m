@@ -89,7 +89,7 @@
         [input.device setFocusMode:AVCaptureFocusModeContinuousAutoFocus];
         [input.device unlockForConfiguration];
     }
-    _output.rectOfInterest = [QRScannerHelper rectOfInterestInView:self.view scannerStyle:_style];
+    _output.rectOfInterest = [self rectOfInterest];
 }
 
 /**
@@ -151,6 +151,13 @@
  */
 - (QRScannerStyle *)customStyle {
     return [QRScannerStyle defaultStyle];
+}
+
+/**
+ * 设置扫码识别区域，子类可以重写这个方法重新设置
+ */
+- (CGRect)rectOfInterest {
+    return [QRScannerHelper rectOfInterestInView:self.view scannerStyle:_style];
 }
 
 /**
