@@ -23,11 +23,6 @@
 + (void)systemSound;
 
 /**
- * 播放自定义的文件声音
- */
-+ (void)customSound;
-
-/**
  * 根据相机权限来进行下一步操作
  */
 + (void)beginScanningWithCompletion:(void (^)())completion;

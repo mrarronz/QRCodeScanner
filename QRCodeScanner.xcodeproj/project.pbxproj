@@ -20,7 +20,6 @@
 		E23357951F1DA09A00C13797 /* QRScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E233578B1F1DA09A00C13797 /* QRScannerViewController.m */; };
 		E23357961F1DA09A00C13797 /* UIImage+QRScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = E233578C1F1DA09A00C13797 /* UIImage+QRScanner.h */; };
 		E23357971F1DA09A00C13797 /* UIImage+QRScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = E233578D1F1DA09A00C13797 /* UIImage+QRScanner.m */; };
-		E2801EFE1F1DEBD200B4E2F5 /* QRScannerResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E2801EFD1F1DEBD200B4E2F5 /* QRScannerResource.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +49,6 @@
 		E233578B1F1DA09A00C13797 /* QRScannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRScannerViewController.m; sourceTree = "<group>"; };
 		E233578C1F1DA09A00C13797 /* UIImage+QRScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+QRScanner.h"; sourceTree = "<group>"; };
 		E233578D1F1DA09A00C13797 /* UIImage+QRScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+QRScanner.m"; sourceTree = "<group>"; };
-		E2801EFD1F1DEBD200B4E2F5 /* QRScannerResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = QRScannerResource.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +91,6 @@
 		E233576C1F1DA06600C13797 /* QRCodeScanner */ = {
 			isa = PBXGroup;
 			children = (
-				E2801EFD1F1DEBD200B4E2F5 /* QRScannerResource.bundle */,
 				E23357841F1DA09A00C13797 /* QRScannerHelper.h */,
 				E23357851F1DA09A00C13797 /* QRScannerHelper.m */,
 				E23357861F1DA09A00C13797 /* QRScannerStyle.h */,
@@ -218,7 +215,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2801EFE1F1DEBD200B4E2F5 /* QRScannerResource.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
