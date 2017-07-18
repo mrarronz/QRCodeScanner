@@ -1,0 +1,21 @@
+PODS:
+  - QRCodeScanner (0.0.1)
+
+DEPENDENCIES:
+  - QRCodeScanner (from `https://github.com/mrarronz/QRCodeScanner.git`)
+
+EXTERNAL SOURCES:
+  QRCodeScanner:
+    :git: https://github.com/mrarronz/QRCodeScanner.git
+
+CHECKOUT OPTIONS:
+  QRCodeScanner:
+    :commit: 53c2b56030e6c12e0a4171583d0ab6e5af98bd61
+    :git: https://github.com/mrarronz/QRCodeScanner.git
+
+SPEC CHECKSUMS:
+  QRCodeScanner: d053873ca5843592f116e632a7b5ce7917a2ff70
+
+PODFILE CHECKSUM: 560126bbd38c88f322cf58e8979f2cb26cf4a07f
+
+COCOAPODS: 1.2.1

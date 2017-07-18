@@ -1,0 +1,1 @@
+../../../QRCodeScanner/QRCodeScanner/UIImage+QRScanner.h
