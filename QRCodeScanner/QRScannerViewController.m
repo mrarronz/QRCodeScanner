@@ -161,6 +161,13 @@
 }
 
 /**
+ * 设置扫码完成后播放的提示音，只有当QRScannerStyle中playCustomSound=YES时才生效
+ */
+- (void)playCustomSound {
+    
+}
+
+/**
  * 获取扫描区域的范围
  */
 - (CGRect)scanRect {
@@ -175,9 +182,14 @@
 #pragma mark - AVCaptureMetadataOutputObjectsDelegate
 
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection {
-    [QRScannerHelper systemSound];
     [QRScannerHelper systemVibrate];
-    
+    if (_style.playCustomSound) {
+        [self playCustomSound];
+    } else {
+        [QRScannerHelper systemSound];
+    }
+    // clear previous data
+    self.scanResult = nil;
     if (metadataObjects && metadataObjects.count > 0) {
         AVMetadataMachineReadableCodeObject * metadataObject = [metadataObjects objectAtIndex:0];
         self.scanResult = metadataObject.stringValue;

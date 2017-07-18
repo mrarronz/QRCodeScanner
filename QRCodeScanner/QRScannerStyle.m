@@ -24,6 +24,7 @@
     if (self) {
         _isNeedShowRectangle = YES;
         _isAngleDisplayInner = NO;
+        _playCustomSound = NO;
         _verticalOffset = 60;
         _marginOffset = 60;
         _rectangleBorderColor = [UIColor whiteColor];

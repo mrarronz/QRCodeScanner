@@ -34,6 +34,11 @@
 - (CGRect)rectOfInterest;
 
 /**
+ * 设置扫码完成后播放的提示音，只有当QRScannerStyle中playCustomSound=YES时才生效
+ */
+- (void)playCustomSound;
+
+/**
  * 获取扫描区域的范围
  */
 - (CGRect)scanRect;

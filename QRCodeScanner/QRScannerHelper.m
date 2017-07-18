@@ -32,11 +32,9 @@
  */
 + (void)customSound {
     static SystemSoundID soundId;
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"beep" ofType:@"wav"];
-    if (path) {
-        AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &soundId);
-        AudioServicesPlaySystemSound(soundId);
-    }
+    NSString *path = @"QRScannerResource.bundle/beep.wav";
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &soundId);
+    AudioServicesPlaySystemSound(soundId);
 }
 
 /**

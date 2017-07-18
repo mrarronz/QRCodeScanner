@@ -66,6 +66,11 @@
 @property (nonatomic, strong) UIImage *scanLineImage;
 
 /**
+ * 扫码完成后是否需要播放自定义的声音
+ */
+@property (nonatomic, assign) BOOL playCustomSound;
+
+/**
  * 单例，得到默认的样式
  */
 + (QRScannerStyle *)defaultStyle;
