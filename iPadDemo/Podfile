@@ -1,0 +1,8 @@
+platform :ios, '8.0'
+use_frameworks!
+
+target 'iPadDemo' do
+
+pod 'QRCodeScanner', :git => "https://github.com/mrarronz/QRCodeScanner.git"
+
+end

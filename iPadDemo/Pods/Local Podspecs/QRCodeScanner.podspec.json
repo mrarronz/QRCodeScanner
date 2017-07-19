@@ -1,0 +1,33 @@
+{
+  "name": "QRCodeScanner",
+  "version": "0.0.1",
+  "summary": "Scan QRCode and generate QRCode image",
+  "description": "Use native API to scan QRCode and generate QRCode image",
+  "homepage": "https://github.com/mrarronz/QRCodeScanner",
+  "license": "MIT",
+  "authors": {
+    "mrarronz": "arronzhu@hotmail.com"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source": {
+    "git": "https://github.com/mrarronz/QRCodeScanner.git",
+    "tag": "0.0.1"
+  },
+  "source_files": [
+    "QRCodeScanner",
+    "QRCodeScanner/**/*.{h,m}"
+  ],
+  "public_header_files": "QRCodeScanner/**/*.h",
+  "frameworks": [
+    "UIKit",
+    "Foundation",
+    "CoreGraphics",
+    "AudioToolbox",
+    "AVFoundation",
+    "Photos",
+    "CoreImage"
+  ],
+  "requires_arc": true
+}
